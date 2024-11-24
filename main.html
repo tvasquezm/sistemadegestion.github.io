@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Botón de cerrar sesión -->
+            <button class="logout-btn" onclick="cerrarSesion()">Cerrar sesión</button>
+
+            <!-- Botones de acciones -->
+            <div class="action-buttons">
+                <button class="add-btn" onclick="mostrarFormulario()">Agregar producto</button>
+                <button class="delete-btn" onclick="mostrarEliminar()">Eliminar producto</button>
+            </div>
+        </div>
+
+        <h1>Tablas de productos</h1>
+
+        <!-- Formulario para agregar producto -->
+        <div id="addForm" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="cerrarFormulario()">X</button>
+                <h2>Agregar producto</h2>
+                <form id="addProductForm">
+                    <label for="productId">ID:</label>
+                    <input type="number" id="productId" required>
+
+                    <label for="productPieces">Piezas:</label>
+                    <input type="number" id="productPieces" required>
+
+                    <label for="productLocation">Ubicación:</label>
+                    <input type="text" id="productLocation" required>
+
+                    <label for="productState">Estado:</label>
+                    <select id="productState" required>
+                        <option value="Disponible">Disponible</option>
+                        <option value="No disponible">No disponible</option>
+                        <option value="Fuera de Circulacion">fuera de Circulacion</option>
+                    </select>
+
+                    <label for="productCreationDate">Fecha de creación:</label>
+                    <input type="date" id="productCreationDate" required>
+
+                    <label for="productPrice">Venta:</label>
+                    <input type="number" id="productPrice" step="0.01" required>
+
+                    <label for="productChanges">Cambios:</label>
+                    <textarea id="productChanges" rows="3" required></textarea>
+
+                    <button type="submit">Agregar producto</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal para mostrar información del producto -->
+        <div id="productDetailsModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="cerrarDetalles()">X</button>
+                <h2>Detalles del producto</h2>
+                <div id="productDetails">
+                    <!-- Aquí se llenarán los detalles dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para eliminar producto -->
+        <div id="deleteForm" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="cerrarEliminar()">X</button>
+                <h2>Eliminar producto</h2>
+                <form id="deleteProductForm">
+                    <label for="deleteProductId">ID del producto:</label>
+                    <input type="number" id="deleteProductId" required>
+                    
+                    <button class="delete-btn" type="submit">Buscar producto</button>
+                </form>
+                <div id="deleteConfirmation" style="display:none;">
+                    <p id="productToDeleteDetails"></p>
+                    <label for="confirmText">Escribe "confirmar" para eliminar:</label>
+                    <input type="text" id="confirmText" required>
+                    <button class="delete-btn" onclick="eliminarProducto()">Eliminar producto</button>
+                </div>
+                <div id="productNotFound" style="color:red; display:none;">
+                    <p>Producto no encontrado con ese ID.</p>
+                </div>
+            </div>
+        </div>
+<!-- Botón para mostrar el formulario de edición -->
+<button onclick="mostrarEditar()">Editar Producto</button>
+
+<!-- Formulario para editar un producto -->
+<div id="editForm" style="display: none;">
+    <form id="editProductForm">
+        <label for="editProductId">ID del Producto:</label>
+        <input type="number" id="editProductId" required />
+
+        <div id="editFields" style="display: none;">
+            <label for="editProductPieces">Piezas:</label>
+            <input type="number" id="editProductPieces" />
+
+            <label for="editProductLocation">Ubicación:</label>
+            <input type="text" id="editProductLocation" />
+
+            <label for="editProductState">Estado:</label>
+            <input type="text" id="editProductState" />
+
+            <label for="editProductCreationDate">Fecha de Creación:</label>
+            <input type="date" id="editProductCreationDate" />
+
+            <label for="editProductPrice">Precio:</label>
+            <input type="number" step="0.01" id="editProductPrice" />
+
+            <label for="editProductChanges">Cambios:</label>
+            <input type="text" id="editProductChanges" />
+
+            <button type="submit">Guardar Cambios</button>
+        </div>
+
+        <p id="editNotFound" style="display: none; color: red;">Producto no encontrado</p>
+        <button type="button" onclick="cerrarEditar()">Cerrar</button>
+    </form>
+</div>
+<div class="search-container">
+    <select id="searchCriteria">
+        <option value="id">ID</option>
+        <option value="pieces">Piezas</option>
+        <option value="location">Ubicación</option>
+        <option value="state">Estado</option>
+        <option value="creationDate">Fecha de creación</option>
+        <option value="expirationDate">Fecha de expiración</option>
+        <option value="price">Precio</option>
+        <option value="changes">Cambios</option>
+    </select>
+    <input
+        type="text"
+        id="searchBar"
+        placeholder="Escribe aquí para buscar"
+    />
+</div>
+
+
+        <!-- Tabla de productos -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Piezas</th>
+                    <th>Ubicación</th>
+                    <th>Estado</th>
+                    <th>Fecha Creación</th>
+                    <th>Fecha Expiración</th>
+                    <th>Venta</th>
+                    <th>Cambios</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los datos se cargan dinámicamente desde JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

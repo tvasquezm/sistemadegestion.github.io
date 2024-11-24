@@ -1,0 +1,368 @@
+/* General */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat, sans-serif;
+    background: linear-gradient(150deg, #57c0dc, #6137ee);
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #6137ee;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.header .logout-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background: #6137ee;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.header .logout-btn:hover {
+    background: #4b2b8e;
+}
+
+.header .action-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.header .action-buttons button {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.header .action-buttons .add-btn {
+    background: #57c0dc;
+}
+
+.header .action-buttons .delete-btn {
+    background: #ff5c5c;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: left;
+}
+
+table thead th {
+    background: #6137ee;
+    color: #fff;
+    padding: 10px;
+}
+
+table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+table tbody td:hover {
+    background: #f9f9f9;
+}
+
+/* Modal para el formulario */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    overflow: auto; /* Permite desplazamiento si el contenido excede la ventana */
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px; /* Limita el ancho máximo */
+    max-height: 80%; /* Limita la altura máxima */
+    overflow-y: auto; /* Habilita desplazamiento vertical para contenido que exceda */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 20px;
+    text-align: center;
+    color: #6137ee;
+}
+
+.modal-content label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.modal-content textarea {
+    resize: none; /* Evita que el usuario cambie el tamaño del área de texto */
+}
+
+.modal-content button {
+    display: block;
+    width: 100%;
+    background-color: #6137ee;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #4b2b8e;
+}
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px; /* Tamaño grande para visibilidad */
+    cursor: pointer;
+    color: #ff5c5c; /* Color rojo llamativo */
+    font-weight: bold;
+    background: #ffffff; /* Fondo blanco */
+    border: 2px solid #ff5c5c; /* Borde rojo */
+    border-radius: 50%; /* Hace el botón circular */
+    width: 40px; /* Tamaño del botón */
+    height: 40px; /* Tamaño del botón */
+    display: flex;
+    align-items: center; /* Centrar el contenido verticalmente */
+    justify-content: center; /* Centrar el contenido horizontalmente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto flotante */
+    transition: transform 0.2s ease, color 0.3s ease, background 0.3s ease;
+}
+
+.modal-content .close:hover {
+    color: #ffffff; /* Cambiar color del texto al pasar el mouse */
+    background: #ff5c5c; /* Fondo rojo intenso */
+    transform: scale(1.2); /* Aumenta ligeramente el tamaño */
+    border-color: #ff0000; /* Intensifica el color del borde */
+}
+
+.modal-content .close:focus {
+    outline: none; /* Elimina el borde predeterminado al enfocarse */
+}
+/* Modal para eliminar producto */
+#deleteForm .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+/* Asegurar que el formulario esté bien adaptado a dispositivos móviles */
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 15px;
+        max-height: 90%; /* Mayor uso de pantalla en dispositivos pequeños */
+    }
+
+    .modal-content h2 {
+        font-size: 18px;
+    }
+
+    .modal-content label {
+        font-size: 13px;
+    }
+
+    .modal-content input,
+    .modal-content select,
+    .modal-content textarea {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .modal-content button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+/* Modal para mostrar detalles del producto */
+#productDetailsModal .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+#productDetailsModal .modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#productDetails {
+    margin-top: 20px;
+}
+
+#productDetails p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+/* Estilo del botón */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+}
+
+/* Botón "Cerrar" */
+button[type="button"] {
+    background-color: #dc3545; /* Rojo */
+}
+
+button[type="button"]:hover {
+    background-color: #a71d2a; /* Rojo más oscuro */
+}
+
+/* Estilo del formulario de edición */
+#editForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background-color: #f8f9fa; /* Gris claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+/* Input y etiquetas */
+#editForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#editForm input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+/* Mensaje de error */
+#editNotFound {
+    font-size: 14px;
+    color: red;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Fondo transparente cuando el modal está activo */
+body.modal-open {
+    background: rgba(0, 0, 0, 0.5);
+}
+.search-container {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+#searchCriteria {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#searchBar {
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
